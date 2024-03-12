@@ -6,8 +6,8 @@ class ConversationState {
     }
 
     // Métodos para interagir com o estado da conversa
-    setStage(count) {
-        this.stage = count;
+    setStage(stage) {
+        this.stage = stage;
     }
 
     getClientData() {

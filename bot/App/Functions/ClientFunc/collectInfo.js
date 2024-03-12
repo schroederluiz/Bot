@@ -1,12 +1,19 @@
 const ConversationState = require('../../Classes/conversationState');
 
-async function collectInfoClient(client, message, dadosClienteSolicitados, conversationStates) {
+async function collectInfoClient(client, message, clientData, count) {
     const pendingReplies = new Map();
     try {
-      if (!dadosClienteSolicitados) {
+      if (!clientData) {
+        count = 1
+
         console.log('chegou na mensagem inicial');
+        
         await client.sendText(message.from, 'Bem vindo a central de atendimento Lenke Automação! Digite seu nome, empresa e filial separados por vírgula (,):');
-        dadosClienteSolicitados = true;
+        
+        clientData = true;
+
+        clientConversationState.setStage(count)
+        clientConversationState.setClientData(infos)
       }
   
       // Armazena o número de telefone do usuário como chave e uma Promise como valor

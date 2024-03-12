@@ -34,7 +34,6 @@ function ConnectWPP() {
         startClient(client);
     })
     .catch((error) => console.log(error));
-    startClient();
 }
 
 module.exports = ConnectWPP;

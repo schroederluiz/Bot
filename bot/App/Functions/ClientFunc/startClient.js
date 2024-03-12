@@ -15,26 +15,26 @@ async function startClient(client) {
                 return;
             }
             const clientPhone = message.from;
-
+            const greetings = ['boa noite', 'bom dia', 'boa tarde', 'ola', 'oi'];
+            const isGreeting = message && message.body && greetings.includes(message.body.toLowerCase());
             // Verifica se já existe uma instância de ConversationState para este cliente
-            if (!conversationStates.has(clientPhone)) {
-                // Se não existir, cria uma nova instância
+            if (!conversationStates.has(clientPhone) && isGreeting) {
+                // Se não existir, cria uma nova instância e a mensagem enviada estiver dentro de greetings
                 const clientConversationState = new ConversationState();
 
                 // Inicia o processo de coleta de informações do cliente
-                const { confirmation, infos } = await collectInfo(client, message, clientConversationState);
-                
-                clientConversationState.setStage(count)
-                clientConversationState.setClientData(infos)
+                let clientData = false
+                const infos = await collectInfo(client, message, clientData, count);
+
                 conversationStates.set(clientPhone, clientConversationState)
             } else {
                 // Se já existir, continua o fluxo da conversa conforme o estado atual
                 const clientConversationState = conversationStates.get(clientPhone);
                 switch (clientConversationState.getStage()) {
-                    case 0:
+                    case 1:
                         await handleMainLevel(client, message, clientConversationState.getClientData());
                         break;
-                    case 1:
+                    case 2:
                         await handleSubMenu(client, message, clientConversationState.getClientData());
                         break;
                     default:
