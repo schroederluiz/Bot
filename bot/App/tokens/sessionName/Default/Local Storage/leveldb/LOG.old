@@ -1,3 +1,6 @@
-2024/03/11-17:45:41.470 2d78 Reusing MANIFEST c:\bot\App\tokens\sessionName\Default\Local Storage\leveldb/MANIFEST-000001
-2024/03/11-17:45:41.472 2d78 Recovering log #10
-2024/03/11-17:45:41.576 2d78 Reusing old log c:\bot\App\tokens\sessionName\Default\Local Storage\leveldb/000010.log 
+2024/03/12-22:41:44.357 c24 Reusing MANIFEST C:\Users\Admin\Documents\GitHub\Bot\bot\App\tokens\sessionName\Default\Local Storage\leveldb/MANIFEST-000001
+2024/03/12-22:41:44.359 c24 Recovering log #30
+2024/03/12-22:41:44.366 c24 Reusing old log C:\Users\Admin\Documents\GitHub\Bot\bot\App\tokens\sessionName\Default\Local Storage\leveldb/000030.log 
+2024/03/12-22:43:46.189 1848 Level-0 table #34: started
+2024/03/12-22:43:46.200 1848 Level-0 table #34: 21106 bytes OK
+2024/03/12-22:43:46.203 1848 Delete type=0 #30

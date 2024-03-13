@@ -6,14 +6,13 @@ const ConversationState = require('../../Classes/conversationState');
 
 const conversationStates = new Map();
 
-let count = 0;
-
 async function startClient(client) {
     client.onMessage(async (message) => {
         try {
             if (message.isGroupMsg) {
                 return;
             }
+
             const clientPhone = message.from;
             const greetings = ['boa noite', 'bom dia', 'boa tarde', 'ola', 'oi'];
             const isGreeting = message && message.body && greetings.includes(message.body.toLowerCase());
@@ -21,15 +20,15 @@ async function startClient(client) {
             if (!conversationStates.has(clientPhone) && isGreeting) {
                 // Se não existir, cria uma nova instância e a mensagem enviada estiver dentro de greetings
                 const clientConversationState = new ConversationState();
+                    
+                await collectInfo(client, message, clientConversationState);
 
-                // Inicia o processo de coleta de informações do cliente
-                let clientData = false
-                const infos = await collectInfo(client, message, clientData, count);
-
-                conversationStates.set(clientPhone, clientConversationState)
+                conversationStates.set(clientPhone, clientConversationState);
             } else {
                 // Se já existir, continua o fluxo da conversa conforme o estado atual
                 const clientConversationState = conversationStates.get(clientPhone);
+                console.log('Client Conversation State');
+                console.log(clientConversationState);
                 switch (clientConversationState.getStage()) {
                     case 1:
                         await handleMainLevel(client, message, clientConversationState.getClientData());
@@ -50,10 +49,13 @@ async function startClient(client) {
     });
 }
 
-async function collectInfo(client, message, conversationState) {
-    await collectInfoClient(client, message, conversationState);
+async function collectInfo(client, message, clientConversationState) {
+    const infos = await collectInfoClient(client, message, clientConversationState);
+
+    // Passa as informações coletadas para o ConversationState
+    clientConversationState.setClientData(infos);
+    console.log('Data: ' + clientConversationState.getClientData())
     // Após coletar as informações do cliente, avança para o próximo estágio da conversa
-    conversationState.nextStage();
 }
 
 module.exports = startClient;
