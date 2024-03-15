@@ -4,8 +4,8 @@
   "description": "Bot para chats de whatsapp",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "build": "nexe app.js"
+    "start": "nodemon main.js",
+    "build": "nexe main.js"
   },
   "keywords": [],
   "author": "",

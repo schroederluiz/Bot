@@ -1,9 +1,9 @@
 class ConversationState {
-    constructor(clientPhone) {
+    constructor() {
         console.log('construiu o objeto')
         this.stage = '' // Estágio atual do atendimento
         this.clientData = {} // Dados do cliente
-        this.idClient = clientPhone
+        this.idClient = ''
         // Outras propriedades conforme necessário
     }
 

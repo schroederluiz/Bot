@@ -1,8 +1,12 @@
-async function collectInfoClient(client, message, clientConversationState, stage, clientPhone) {
+const ConversationState = require('../../Classes/conversationState');
+
+let confirm = false;
+let match = false;
+
+async function collectInfoClient(client, message, stage, clientPhone) {
   const pendingReplies = new Map();
   try {
-      let confirm = false;
-      if (stage === 0) {
+      if (stage === 0 && match === false) {
           count = 1;
 
           console.log('chegou na mensagem inicial');
@@ -10,6 +14,8 @@ async function collectInfoClient(client, message, clientConversationState, stage
           await client.sendMessage(message.from, 'Digite seu nome, empresa e filial separados por vírgula (,):');
 
           confirm = true;
+      } else {
+        await client.sendMessage(message.from, 'Dados enviados incorretamente, por favor, reenvie da forma correta.')
       }
 
       // Armazena o número de telefone do usuário como chave e uma Promise como valor
@@ -34,10 +40,12 @@ async function collectInfoClient(client, message, clientConversationState, stage
           console.error('Resposta do usuário não está no formato esperado.');
           // Reinicia a função para permitir que o usuário digite novamente
           count = 0;
-          collectInfoClient(client, message, clientConversationState, count);
+          match = true
+          collectInfoClient(client, message, stage, clientPhone);
       } else {
           const [nome, empresa, filial] = splitResponse;
           const infos = [nome.trim(), empresa.trim(), filial.trim(), clientPhone];
+          const clientConversationState = new ConversationState(); 
           // Mensagem de confirmação dos dados
           if (confirm === true) {
               await client.sendMessage(message.from, `Você digitou:\n\nNome: ${nome}\nEmpresa: ${empresa}\nFilial/unidade: ${filial}\n\nDigite "1" para confirmar ou "0" para encerrar.`);
@@ -67,7 +75,7 @@ async function collectInfoClient(client, message, clientConversationState, stage
           console.log(infos)
           console.log(count)
           console.log('============================')
-          return { count, infos};
+          return { count, infos, clientConversationState};
       }
   } catch (error) {
       console.error('Erro ao enviar ou receber mensagem: ', error);
