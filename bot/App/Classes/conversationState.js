@@ -1,7 +1,9 @@
 class ConversationState {
-    constructor() {
-        this.stage = 0; // Estágio atual do atendimento
-        this.clientData = {}; // Dados do cliente
+    constructor(clientPhone) {
+        console.log('construiu o objeto')
+        this.stage = '' // Estágio atual do atendimento
+        this.clientData = {} // Dados do cliente
+        this.idClient = clientPhone
         // Outras propriedades conforme necessário
     }
 
@@ -10,8 +12,9 @@ class ConversationState {
     }
 
     // Métodos para interagir com o estado da conversa
-    setStage(stage) {
-        this.stage = stage;
+    setStage(count) {
+        console.log('Entou no setStage ' + count)
+        this.stage = count;
     }
 
     getClientData() {
@@ -25,6 +28,13 @@ class ConversationState {
         console.log(this);
     }
 
+    setIdClient(clientPhone){
+        this.idClient = clientPhone
+    }
+
+    getIdClient(){
+        return this.idClient
+    }
     // Outros métodos conforme necessário
 }
 

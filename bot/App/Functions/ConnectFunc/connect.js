@@ -1,39 +1,27 @@
-const wppconnect = require('@wppconnect-team/wppconnect');
+const { Client, LocalAuth } = require('whatsapp-web.js');
+const qrcode = require('qrcode-terminal');
 const startClient = require('../ClientFunc/startClient');
 
-function ConnectWPP() {
-    wppconnect
-    .create({
-        session: 'sessionName',
-        catchQR: (base64Qr, asciiQR) => {
-        console.log(asciiQR);
-        var matches = base64Qr.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
-            response = {};
+// Create a new client instance
+function ConnectWPP(){
+    const client = new Client({
+        authStrategy: new LocalAuth()
+    });
 
-        if (matches.length !== 3) {
-            return new Error('Invalid input string');
-        }
-        response.type = matches[1];
-        response.data = new Buffer.from(matches[2], 'base64');
+    // When the client is ready, run this code (only once)
+    client.once('ready', () => {
+        console.log('Client is ready!');
+    });
 
-        var imageBuffer = response;
-        require('fs').writeFile(
-            'out.png',
-            imageBuffer['data'],
-            'binary',
-            function (err) {
-            if (err != null) {
-                console.log(err);
-            }
-            }
-        );
-        },
-        logQR: false,
-    })
-    .then((client) => {
-        startClient(client);
-    })
-    .catch((error) => console.log(error));
+    // When the client received QR-Code
+    client.on('qr', qr => {
+        qrcode.generate(qr, {small: true});
+    });
+
+    // Start your client
+    client.initialize();
+    console.log('chegou no start client')
+    startClient(client)
 }
 
-module.exports = ConnectWPP;
+module.exports = ConnectWPP
