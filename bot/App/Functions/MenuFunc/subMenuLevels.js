@@ -1,11 +1,11 @@
-const startClient = require('../ClientFunc/startClient');
-const handleMainLevel = require('./mainMenuLevel');
+const startClient = require('../ClientFunc/startClient')
+const handleMainLevel = require('./mainMenuLevel')
 
 function defineData(clientConversationState){
-  const clientData = clientConversationState.getClientData();
+  const clientData = clientConversationState.getClientData()
   const nomeCliente = Array.isArray(clientData) && clientData.length > 0 ? clientData[0] : ''
   const nomeEmpresa = Array.isArray(clientData) && clientData.length > 1 ? clientData[1] : ''
-  const nomeFilial = Array.isArray(clientData) && clientData.length > 2 ? clientData[2] : '';
+  const nomeFilial = Array.isArray(clientData) && clientData.length > 2 ? clientData[2] : ''
   const data = [nomeCliente, nomeEmpresa, nomeFilial]
   return data
 }

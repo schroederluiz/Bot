@@ -18,7 +18,6 @@ async function startClient(client) {
             const greetings = ['boa noite', 'bom dia', 'boa tarde', 'ola', 'oi']
             const isGreeting = message && message.body && greetings.includes(message.body.toLowerCase())
             // Verifica se já existe uma instância de ConversationState para este cliente
-            console.log('Já existe instância de ConversationState para este cliente?', createdClient)
             if (isGreeting && !message.isGroupMsg && createdClient === false) {
                 // Se não existir, cria uma nova instância e a mensagem enviada estiver dentro de greeting 
                 await collectInfo(client, message, stage, clientPhone)
