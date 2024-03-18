@@ -1,9 +1,11 @@
 const { Client, LocalAuth } = require('whatsapp-web.js')
 const qrcode = require('qrcode-terminal')
 const startClient = require('../ClientFunc/startClient')
+const consultarServidor = require('./serverConsult')
+
 
 // Create a new client instance
-function ConnectWPP(){
+function ConnectWPP() {
     const client = new Client({
         authStrategy: new LocalAuth()
     })
@@ -15,12 +17,15 @@ function ConnectWPP(){
 
     // When the client received QR-Code
     client.on('qr', qr => {
-        qrcode.generate(qr, {small: true})
+        qrcode.generate(qr, { small: true })
     })
 
     // Start your client
+    consultarServidor();
     client.initialize()
+
     startClient(client)
+
 }
 
 module.exports = ConnectWPP

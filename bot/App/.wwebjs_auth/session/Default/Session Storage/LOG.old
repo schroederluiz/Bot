@@ -1,3 +1,2 @@
-2024/03/15-12:02:40.868 10e0 Reusing MANIFEST C:\Users\Admin\Documents\GitHub\Bot\bot\App\.wwebjs_auth\session\Default\Session Storage/MANIFEST-000001
-2024/03/15-12:02:40.868 10e0 Recovering log #3
-2024/03/15-12:02:40.869 10e0 Reusing old log C:\Users\Admin\Documents\GitHub\Bot\bot\App\.wwebjs_auth\session\Default\Session Storage/000003.log 
+2024/03/18-17:59:54.016 1944 Creating DB C:\Users\luiz.pereira\Documents\GitHub\Bot\bot\App\.wwebjs_auth\session\Default\Session Storage since it was missing.
+2024/03/18-17:59:54.921 1944 Reusing MANIFEST C:\Users\luiz.pereira\Documents\GitHub\Bot\bot\App\.wwebjs_auth\session\Default\Session Storage/MANIFEST-000001
