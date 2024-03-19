@@ -21,10 +21,12 @@ function ConnectWPP() {
     })
 
     // Start your client
-    consultarServidor();
-    client.initialize()
+    const token = consultarServidor();
+    if (token.length === 64) {
+        client.initialize()
 
-    startClient(client)
+        startClient(client)
+    }
 
 }
 
