@@ -2,6 +2,7 @@ const { Client, LocalAuth } = require('whatsapp-web.js')
 const qrcode = require('qrcode-terminal')
 const startClient = require('../ClientFunc/startClient')
 const consultarServidor = require('./serverConsult')
+const validaToken = require('./validaToken')
 
 
 // Create a new client instance
@@ -22,10 +23,10 @@ function ConnectWPP() {
 
     // Start your client
     const token = consultarServidor();
-    if (token.length === 64) {
+    if (validaToken(token)) {
         client.initialize()
 
-        startClient(client)
+        startClient(client, token)
     }
 
 }
