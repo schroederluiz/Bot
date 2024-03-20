@@ -1,9 +1,8 @@
 // Função para coletar o pedido do cliente
-async function coletarPedido(client, message) {
+async function coletarPedido(client, message, pedido) {
     console.log('Entrou coleta pedido');
     try {
         if (message.isGroupMsg) {
-            const pedido = message.body; // O pedido do cliente
             console.log('Pedido do cliente:', pedido);
 
             // Use expressões regulares para encontrar palavras-chave específicas no pedido

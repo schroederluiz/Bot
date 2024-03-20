@@ -22,11 +22,9 @@ async function collectInfoClient(client, message, stage, clientPhone) {
             }).catch(error => console.error('Erro ao enviar mensagem:', error));
             match = true
         } else {
-            await client.sendMessage(message.from, 'Dados enviados incorretamente, por favor, reenvie da forma correta.')
+           let pedido = await client.sendMessage(message.from, 'Dados enviados incorretamente, por favor, reenvie da forma correta.')
         }
-        if (match === true){
-            await coletarPedido(client, message)
-        }
+            await coletarPedido(client, message, pedido)
         // Armazena o número de telefone do usuário como chave e uma Promise como valor
         pendingReplies.set(message.from, new Promise(resolve => {
             client.on('message_create', msg => {
@@ -36,8 +34,6 @@ async function collectInfoClient(client, message, stage, clientPhone) {
                 }
             })
         }))
-        console.log('AAAAAAAAAAAAAAAA')
-
         // Aguarda a resposta do usuário
         const response = await pendingReplies.get(message.from)
 
