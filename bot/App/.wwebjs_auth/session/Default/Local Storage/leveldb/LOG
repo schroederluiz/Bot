@@ -1,3 +1,5 @@
-2024/03/18-18:01:37.952 1c70 Reusing MANIFEST C:\Users\luiz.pereira\Documents\GitHub\Bot\bot\App\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
-2024/03/18-18:01:37.969 1c70 Recovering log #3
-2024/03/18-18:01:37.970 1c70 Reusing old log C:\Users\luiz.pereira\Documents\GitHub\Bot\bot\App\.wwebjs_auth\session\Default\Local Storage\leveldb/000003.log 
+2024/03/20-13:38:20.089 6288 Reusing MANIFEST C:\Users\luiz.pereira\Documents\GitHub\Bot\bot\App\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
+2024/03/20-13:38:20.089 6288 Recovering log #8
+2024/03/20-13:38:20.089 6288 Level-0 table #10: started
+2024/03/20-13:38:20.183 6288 Level-0 table #10: 15621 bytes OK
+2024/03/20-13:38:20.186 6288 Delete type=0 #8

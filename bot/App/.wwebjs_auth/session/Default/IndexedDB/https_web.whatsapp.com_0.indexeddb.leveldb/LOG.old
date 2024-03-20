@@ -1,0 +1,14 @@
+2024/03/20-13:36:39.446 4e1c Reusing MANIFEST C:\Users\luiz.pereira\Documents\GitHub\Bot\bot\App\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/03/20-13:36:39.447 4e1c Recovering log #1153
+2024/03/20-13:36:39.666 4e1c Reusing old log C:\Users\luiz.pereira\Documents\GitHub\Bot\bot\App\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/001153.log 
+2024/03/20-13:37:03.230 4e1c Compacting 1@2 + 3@3 files
+2024/03/20-13:37:03.338 4e1c Generated table #1174@2: 3781 keys, 2115836 bytes
+2024/03/20-13:37:03.595 4e1c Generated table #1175@2: 84486 keys, 2231292 bytes
+2024/03/20-13:37:03.985 4e1c Generated table #1176@2: 81830 keys, 2229583 bytes
+2024/03/20-13:37:04.163 4e1c Generated table #1177@2: 63507 keys, 1729487 bytes
+2024/03/20-13:37:04.163 4e1c Compacted 1@2 + 3@3 files => 8306198 bytes
+2024/03/20-13:37:04.164 4e1c compacted to: files[ 0 3 35 22 0 0 0 ]
+2024/03/20-13:37:04.164 4e1c Delete type=2 #1098
+2024/03/20-13:37:04.164 4e1c Delete type=2 #1099
+2024/03/20-13:37:04.164 4e1c Delete type=2 #1100
+2024/03/20-13:37:04.164 4e1c Delete type=2 #1161

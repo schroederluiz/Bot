@@ -6,29 +6,30 @@ const validaToken = require('./validaToken')
 
 
 // Create a new client instance
-function ConnectWPP() {
-    const client = new Client({
-        authStrategy: new LocalAuth()
-    })
-
-    // When the client is ready, run this code (only once)
-    client.once('ready', () => {
-        console.log('Client is ready!')
-    })
-
-    // When the client received QR-Code
-    client.on('qr', qr => {
-        qrcode.generate(qr, { small: true })
-    })
-
-    // Start your client
-    const token = consultarServidor();
+async function ConnectWPP() {
+    const token = await consultarServidor();
+    console.log('saiu consultar servidor')
     if (validaToken(token)) {
+        console.log('if connection')
+        const client = new Client({
+            authStrategy: new LocalAuth()
+        })
+        console.log(client)
+
+        // When the client is ready, run this code (only once)
+        client.once('ready', async () => {
+            console.log('Client is ready!')
+            startClient(client, token)
+        })
+
+        // When the client received QR-Code
+        client.on('qr', qr => {
+            qrcode.generate(qr, { small: true })
+        })
+
+        // Start your client
         client.initialize()
-
-        startClient(client, token)
     }
-
 }
 
 module.exports = ConnectWPP

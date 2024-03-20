@@ -1,3 +1,2 @@
-2024/03/15-11:23:44.178 2900 Reusing MANIFEST C:\Users\Admin\Documents\GitHub\Bot\bot\App\.wwebjs_auth\session\Default\shared_proto_db/MANIFEST-000001
-2024/03/15-11:23:44.188 2900 Recovering log #3
-2024/03/15-11:23:44.189 2900 Reusing old log C:\Users\Admin\Documents\GitHub\Bot\bot\App\.wwebjs_auth\session\Default\shared_proto_db/000003.log 
+2024/03/20-10:46:00.860 3774 Creating DB C:\Users\luiz.pereira\Documents\GitHub\Bot\bot\App\.wwebjs_auth\session\Default\shared_proto_db since it was missing.
+2024/03/20-10:46:00.881 3774 Reusing MANIFEST C:\Users\luiz.pereira\Documents\GitHub\Bot\bot\App\.wwebjs_auth\session\Default\shared_proto_db/MANIFEST-000001

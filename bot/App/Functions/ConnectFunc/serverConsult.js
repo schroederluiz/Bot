@@ -1,17 +1,16 @@
 function consultarServidor() {
-  const cnpj = 2222;
-  const id_client = 2;
+  const cnpj = 1111;
+  const id_client = 1;
+
+
   let dataHoraAtual = new Date();
   let token = ''
 
   // Exibir a data e hora atual
-  console.log("Data e hora atual:", dataHoraAtual);
 
   let dataHoraISO = dataHoraAtual.toISOString();
-  console.log('datahora toiso: ' + dataHoraISO)
 
-
-  fetch('http://localhost:5000/consultar', {
+  return fetch('http://127.0.0.1:5000/token', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -20,13 +19,12 @@ function consultarServidor() {
   })
     .then(response => {
       if (!response.ok) {
-        throw new Error('Erro ao consultar o servidor.');
+        throw new Error('Erro ao consultar empresa.');
       }
-      console.log(response)
       return response.json();
     })
     .then(data => {
-      console.log('Resposta do servidor:', data);
+
       if (token === data){
         return token
       } else {
@@ -37,7 +35,8 @@ function consultarServidor() {
     })
     .catch(error => {
       console.error('Erro:', error);
+      process.exit(1); // Encerra o script
     });
 }
 
-module.exports = consultarServidor
+module.exports = consultarServidor;
