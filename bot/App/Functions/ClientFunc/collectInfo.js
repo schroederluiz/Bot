@@ -1,3 +1,4 @@
+const { MessageMedia } = require('whatsapp-web.js')
 const ConversationState = require('../../Classes/conversationState')
 
 async function collectInfoClient(client, message, stage, clientPhone) {
@@ -8,10 +9,17 @@ async function collectInfoClient(client, message, stage, clientPhone) {
         if (stage === 0 && match === false) {
             count = 1
 
-            client.sendMessage(message.from, 'Bem vindo a central de atendimento Lenke Automação!')
-            await client.sendMessage(message.from, 'Digite seu nome, empresa e filial separados por vírgula (,):')
-
-            confirm = true
+            client.sendMessage(message.from, 'Olá! 😎').then(() => {
+                setTimeout(() => {
+                    client.sendMessage(message.from, 'Um momento, já vou lhe encaminhar o cardápio! 🍔').then(() => {
+                        setTimeout(() => {
+                            let media = MessageMedia.fromFilePath('./app/Functions/imageFunc/image.png')
+                            client.sendImage(message.from, ).catch(error => console.error('Erro ao enviar imagem:', error));
+                        }, 2000);
+                    }).catch(error => console.error('Erro ao enviar mensagem:', error));
+                }, 2000);
+            }).catch(error => console.error('Erro ao enviar mensagem:', error));
+            coletarPedido(message)
         } else {
             await client.sendMessage(message.from, 'Dados enviados incorretamente, por favor, reenvie da forma correta.')
         }
