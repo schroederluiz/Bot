@@ -1,5 +1,6 @@
 const { MessageMedia } = require('whatsapp-web.js')
 const ConversationState = require('../../Classes/conversationState')
+const coletarPedido = require('./coletaPedido')
 
 async function collectInfoClient(client, message, stage, clientPhone) {
     const pendingReplies = new Map()
@@ -13,17 +14,19 @@ async function collectInfoClient(client, message, stage, clientPhone) {
                 setTimeout(() => {
                     client.sendMessage(message.from, 'Um momento, já vou lhe encaminhar o cardápio! 🍔').then(() => {
                         setTimeout(() => {
-                            let media = MessageMedia.fromFilePath('./app/Functions/imageFunc/image.png')
-                            client.sendImage(message.from, ).catch(error => console.error('Erro ao enviar imagem:', error));
+                            let media = MessageMedia.fromFilePath('./Functions/imageFunc/image.png')
+                            client.sendMessage(message.from, media, {caption: "O que vai querer hoje? 🤔"}).catch(error => console.error('Erro ao enviar imagem:', error));
                         }, 2000);
                     }).catch(error => console.error('Erro ao enviar mensagem:', error));
                 }, 2000);
             }).catch(error => console.error('Erro ao enviar mensagem:', error));
-            coletarPedido(message)
+            match = true
         } else {
             await client.sendMessage(message.from, 'Dados enviados incorretamente, por favor, reenvie da forma correta.')
         }
-
+        if (match === true){
+            await coletarPedido(client, message)
+        }
         // Armazena o número de telefone do usuário como chave e uma Promise como valor
         pendingReplies.set(message.from, new Promise(resolve => {
             client.on('message_create', msg => {
@@ -33,6 +36,7 @@ async function collectInfoClient(client, message, stage, clientPhone) {
                 }
             })
         }))
+        console.log('AAAAAAAAAAAAAAAA')
 
         // Aguarda a resposta do usuário
         const response = await pendingReplies.get(message.from)
@@ -74,7 +78,7 @@ async function collectInfoClient(client, message, stage, clientPhone) {
             pendingReplies.delete(message.from)
 
             // Retorna a confirmação e as informações do cliente
-            return { count, infos, clientConversationState }
+            return { infos, clientConversationState }
         }
     } catch (error) {
         console.error('Erro ao enviar ou receber mensagem: ', error)

@@ -21,7 +21,7 @@ async function startClient(client, token) {
                 // Verifica se já existe uma instância de ConversationState para este cliente
                 if (isGreeting && !message.isGroupMsg && createdClient === false) {
                     // Se não existir, cria uma nova instância e a mensagem enviada estiver dentro de greeting 
-                    await collectInfo(client, message, clientPhone, token)
+                    await collectInfo(client, message, clientPhone)
                 }
         } catch (error) {
             console.error('Erro ao processar mensagem: ', error)
@@ -29,18 +29,17 @@ async function startClient(client, token) {
     })
 }
 
-async function collectInfo(client, message, clientPhone, token) {
+async function collectInfo(client, message, clientPhone) {
     try {
-        const { count, infos, clientConversationState } = await collectInfoClient(client, message, stage, clientPhone)
+        const { infos, clientConversationState } = await collectInfoClient(client, message, stage, clientPhone)
 
         // Passa as informações coletadas para o ConversationState
         console.log('===============================')
-        console.log('Count:', count)
         console.log('Infos:', infos)
         console.log('===============================')
 
         clientConversationState.setClientData(infos)
-        clientConversationState.setStage(count)
+        //clientConversationState.setStage(count)
         clientConversationState.setIdClient(clientPhone)
         console.log('Data:', clientConversationState)
         handleMainLevel(client, message, clientConversationState)
